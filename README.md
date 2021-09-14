@@ -3,7 +3,9 @@
 >  _Periodic Tables_, a startup that is creating a reservation system for fine dining restaurants.
 > The software is used only by restaurant personnel when a customer calls to request a reservation.
 > At this point, the customers will not access the system online.
-> 
+
+
+fully deployed app: https://frontend-capstone-2s80az6tr-esmeraldavera.vercel.app/dashboard
 ## Existing files
 
 This repository is set up as a *monorepo*
@@ -126,17 +128,19 @@ so that I know how many customers will arrive at the restaurant on a given day.
    - display a `Submit` button that, when clicked, saves the new reservation, then displays the `/dashboard` page for the date of the new reservation
    - display a `Cancel` button that, when clicked, returns the user to the previous page
    - display any error messages returned from the API
-
-![Alt text](front-end\.screenshots\us-02-reservation-is-future-before.png?raw=true "reservation/new display")
+![Web capture_14-9-2021_154514_frontend-capstone-2s80az6tr-esmeraldavera vercel app](https://user-images.githubusercontent.com/81045242/133331279-5f094f3e-c493-4fe0-8284-d217de2e3c6a.jpeg)
 
 
 1. The `/dashboard` page will
    - list all reservations for one date only. (E.g. if the URL is `/dashboard?date=2035-12-30` then send a GExnpT to `/reservations?date=2035-12-30` to list the reservations for that date). The date is defaulted to today, and the reservations are sorted by time.
    - display next, previous, and today buttons that allow the user to see reservations on other dates
    - display any error messages returned from the API
+
+![Web capture_14-9-2021_154051_frontend-capstone-2s80az6tr-esmeraldavera vercel app](https://user-images.githubusercontent.com/81045242/133331078-5005dc3e-05bd-4028-b0dd-c87d93a7cd6b.jpeg)
+
 1. The `/reservations` API will have the same validations as above and will return 400, along with an informative error message, when a validation error happens.
    - seed the reservations table with the data contained in `./back-end/src/db/seeds/00-reservations.json`
-
+![Web capture_14-9-2021_154611_frontend-capstone-2s80az6tr-esmeraldavera vercel app](https://user-images.githubusercontent.com/81045242/133331368-69c07ece-f1e0-4e1b-94e6-e9438549fdba.jpeg)
 
 
 ### US-02 Create reservation on a future, working date
@@ -145,23 +149,12 @@ As a restaurant manager<br/>
 I only want to allow reservations to be created on a day when we are open<br/>
 so that users do not accidentally create a reservation for days when we are closed.<br/>
 
-#### Acceptance criteria
-
 1. The `/reservations/new` page will display an error message with `className="alert alert-danger"` if any of the following constraints are violated:
    - The reservation date is a Tuesday as the restaurant is closed on Tuesdays.
    - The reservation date is in the past. Only future reservations are allowed.
 1. The `/reservations` API will have the same validations as above and will return 400, along with an informative error message, when a validation error happens.
-
-> **Hint** There may be more than one validation error on the page at time.
 >
 > For example, a reservation in the past on a Tuesday violates both rules, so the page should display two errors within a single `className="alert alert-danger"`
->
-> However, the API validation does not need to include multiple validation error messages.
-> You can run the validation in any order and report only one validation error at a time, and the tests will pass.
->
-> Also, parsing a date in YYYY-MM-DD format using the built-in Date class assumes the date is a UTC date. UTC is a time standard that is the basis for civil time and time zones worldwide, but it is NOT a timezone. As a result, keep an eye out for how your dates are interpreted by the Date class.
->
-> While there is nothing preventing you from using a third party library to handle dates for your project, you are encouraged to use the built-in Date class.
 
 ### US-03 Create reservation within eligible timeframe
 
@@ -194,6 +187,8 @@ so that I know which tables are occupied and free.
      - Capacity: `<input name="capacity" />`, this is the number of people that can be seated at the table, which must be at least 1 person.
    - display a `Submit` button that, when clicked, saves the new table then displays the `/dashboard` page
    - display a `Cancel` button that, when clicked, returns the user to the previous page
+![Web capture_14-9-2021_154828_frontend-capstone-2s80az6tr-esmeraldavera vercel app](https://user-images.githubusercontent.com/81045242/133331675-882633a0-336e-4014-ab38-177c73add51d.jpeg)
+
 1. The `/dashboard` page will:
 
    - display a list of all reservations in one area.
@@ -219,19 +214,11 @@ so that I know which tables are occupied and free.
 - if the table capacity is less than the number of people in the reservation, return 400 with an error message.
 - if the table is occupied, return 400 with an error message.
 
-> **Hint** Work through the acceptance criteria in the order listed, step-by-step. A different order may be more challenging.
-
-> **Hint** Seed the `tables` table in a similar way as it's done with the `reservations` table.
-
-> **Hint** Add a `reservation_id` column in the `tables` table. Use the `.references()` and `inTable()` knex functions to add the foreign key reference.
-
 ### US-05 Finish an occupied table
 
 As a restaurant manager<br/>
 I want to free up an occupied table when the guests leave<br/>
 so that I can seat new guests at that table.<br/>
-
-#### Acceptance Criteria
 
 1. The `/dashboard` page will
    - Display a "Finish" button on each _occupied_ table.
@@ -239,15 +226,12 @@ so that I can seat new guests at that table.<br/>
    - Clicking the "Finish" button will display the following confirmation: "Is this table ready to seat new guests? This cannot be undone." If the user selects "Ok" the system will: - Send a `DELETE` request to `/tables/:table_id/seat` in order to remove the table assignment. The tests do not check the body returned by this request. - The server should return 400 if the table is not occupied. - Refresh the list of tables to show that the table is now available.
    - Clicking the "Cancel" makes no changes.
 
-> **Hint** The end-to-end test waits for the tables list to be refreshed before checking the free/occupied status of the table, so be sure to send a GET request to `/tables` to refresh the tables list.
-
 ### US-06 Reservation Status
 
 As a restaurant manager<br/>
 I want a reservation to have a status of either booked, seated, or finished<br/>
 so that I can see which reservation parties are seated, and finished reservations are hidden from the dashboard.
 
-#### Acceptance Criteria
 
 1. The `/dashboard` page will
    - display the status of the reservation. The default status is "booked"
@@ -257,17 +241,11 @@ so that I can see which reservation parties are seated, and finished reservation
    - clicking the Finish button associated with the table changes the reservation status to "finished" and removes the reservation from the dashboard.
    - to set the status, PUT to `/reservations/:reservation_id/status` with a body of `{data: { status: "<new-status>" } }` where `<new-status>` is one of booked, seated, or finished
 
-> **Hint** You can add a field to a table in a migration `up` method by defining a new column. E.g. `table.string("last_name", null).notNullable();` will create a new last_name column.  Be sure to remove the column in the `down` function using `dropColumn()`. E.g. `table.dropColumn("last_name");`
-
-> **Hint** Use [`Knex.transaction()`](http://knexjs.org/#Transactions) to make sure the `tables` and `reservations` records are always in sync with each other.
-
 ### US-07 Search for a reservation by phone number
 
 As a restaurant manager<br/>
 I want to search for a reservation by phone number (partial or complete)<br/>
 so that I can quickly access a customer's reservation when they call about their reservation.<br/>
-
-#### Acceptance Criteria
 
 1. The `/search` page will
    - Display a search box `<input name="mobile_number" />` that displays the placeholder text: "Enter a customer's phone number"
@@ -277,29 +255,12 @@ so that I can quickly access a customer's reservation when they call about their
      - the search page will display all reservations matching the phone number, regardless of status.
    - display `No reservations found` if there are no records found after clicking the Find button.
 
-> **Hint** To search for a partial or complete phone number, you should ignore all formatting and search only for the digits.
-> You will need to remove any non-numeric characters from the submitted mobile number and also use the PostgreSQL translate function.
->
-> The following function will perform the correct search.
->
-> ```javascript
-> function search(mobile_number) {
->   return knex("reservations")
->     .whereRaw(
->       "translate(mobile_number, '() -', '') like ?",
->       `%${mobile_number.replace(/\D/g, "")}%`
->     )
->     .orderBy("reservation_date");
-> }
-> ```
-
 ### US-08 Change an existing reservation
 
 As a restaurant manager<br/>
 I want to be able to modify a reservation if a customer calls to change or cancel their reservation<br/>
 so that reservations are accurate and current.
 
-#### Acceptance Criteria
 
 1. The `/dashboard` and the `/search` page will
    - Display an "Edit" button next to each reservation
@@ -316,4 +277,3 @@ so that reservations are accurate and current.
    - Clicking the "Submit" button will save the reservation, then displays the previous page.
    - Clicking "Cancel" makes no changes, then display the previous page.
 
-> **Hint** The same validation used for create applies to editing a reservation. The form and the API for updating a reservation must not allow the user to violate any of the rules specified when creating a reservation.
