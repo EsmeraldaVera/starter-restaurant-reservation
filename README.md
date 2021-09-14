@@ -10,15 +10,6 @@ fully deployed app: https://frontend-capstone-2s80az6tr-esmeraldavera.vercel.app
 
 This repository is set up as a *monorepo*
 
-The table below describes the folders in this starter repository:
-
-| Folder/file path | Description                                                      |
-| ---------------- | ---------------------------------------------------------------- |
-| `./back-end`     | The backend project, which runs on `localhost:5000` by default.  |
-| `./front-end`    | The frontend project, which runs on `localhost:3000` by default. |
-
-This starter code closely follows the best practices and patterns established in the Robust Server Structure module.
-
 ### Backend Existing files
 
 The `./back-end` folder contains all the code for the backend project.
@@ -26,22 +17,19 @@ The `./back-end` folder contains all the code for the backend project.
 The table below describes the existing files in the `./back-end` folder:
 
 | Folder/file path                                         | Description                                                                                                         |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `./back-end/knexfile.js`                                 | The Knex configuration file. 
-|
-| `./back-end/src/app.js`                                  | Defines the Express application and connects routers.                                                               |
-| `./back-end/src/db/connection.js`                        | The Knex connection file. 
-|
-| `./back-end/src/db/migrations`                           | The Knex migrations folder.                                                                                         |
-| `./back-end/src/db/seeds/`                               | The Knex seeds folder.                                                                                              |
-| `./back-end/src/errors/errorHandler.js`                  | Defined an Express API error handler.                                                                               |
-| `./back-end/src/errors/notFound.js`                      | Defined an Express API "not found" handler.                                                                         |
-| `./back-end/src/reservations/reservations.controller.js` | A controller for the reservations resource.                                                                         |
-| `./back-end/src/reservations/reservations.router.js`     | A router for the reservations resource.                                                                             |
-| `./back-end/src/server.js`                               | Defines the node server.                                                                                            |
-| `./back-end/test`                                        | A folder that contains all of the integration tests. 
-|
-| `./back-end/vercel.json`                                 | A vercel deployment configuration file. You will not need to make changes to this file.                             |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `./back-end/knexfile.js`                                 | The Knex configuration file.                                                                                 |
+| `./back-end/src/app.js`                                  | Defines the Express application and connects routers.                                                        |
+| `./back-end/src/db/connection.js`                        | The Knex connection file.                                                                                    |
+| `./back-end/src/db/migrations`                           | The Knex migrations folder.                                                                                  |
+| `./back-end/src/db/seeds/`                               | The Knex seeds folder.                                                                                       |
+| `./back-end/src/errors/errorHandler.js`                  | Defined an Express API error handler.                                                                        |
+| `./back-end/src/errors/notFound.js`                      | Defined an Express API "not found" handler.                                                                  |
+| `./back-end/src/reservations/reservations.controller.js` | A controller for the reservations resource.                                                                  |
+| `./back-end/src/reservations/reservations.router.js`     | A router for the reservations resource.                                                                      |
+| `./back-end/src/server.js`                               | Defines the node server.                                                                                     |
+| `./back-end/test`                                        | A folder that contains all of the integration tests.                                                         |
+| `./back-end/vercel.json`                                 | A vercel deployment configuration file. You will not need to make changes to this file.                      |
 
 ### Frontend Existing files
 
