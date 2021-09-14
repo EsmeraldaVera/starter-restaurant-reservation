@@ -149,14 +149,14 @@ export default function ReservationForm({ reservation }) {
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="btn btn-dark mr-3 ml-3"
+                  className="btn btn-info mr-3 ml-3"
                 >
                   Submit
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="btn btn-dark mr-3 ml-3"
+                  className="btn btn-warning mr-3 ml-3"
                 >
                   Cancel
                 </button>
